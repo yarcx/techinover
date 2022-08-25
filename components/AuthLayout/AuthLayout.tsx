@@ -1,14 +1,13 @@
 import React from "react";
-import { AuthWrapper } from "./AuthStyle";
+import { AuthWrapper, AuthTitle } from "./AuthStyle";
 
-function AuthLayout() {
-  return (
-    <AuthWrapper>
-      AuthLayout Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum asperiores alias
-      sunt possimus excepturi nemo, tempore consequatur rerum! Voluptatem ex ut tenetur eligendi
-      recusandae. Neque adipisci libero illo? Earum, numquam!
-    </AuthWrapper>
-  );
+export interface AuthLayoutProps {
+  children: React.ReactNode;
+  authPageHeight?: string;
+}
+
+function AuthLayout({ authPageHeight, children }: AuthLayoutProps) {
+  return <AuthWrapper authPageHeight={authPageHeight}>{children}</AuthWrapper>;
 }
 
 export default AuthLayout;
