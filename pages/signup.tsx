@@ -1,17 +1,13 @@
 import React from "react";
 import AuthLayout from "../components/AuthLayout/AuthLayout";
-import { AuthButton, AuthTitle } from "../components/AuthLayout/AuthStyle";
+import Signup from "../components/Auth/Signup";
 
-function Signup() {
+function Index() {
   return (
     <AuthLayout>
-      <form className="authForm">
-        <AuthTitle>Sign Up</AuthTitle>
-
-        <AuthButton>Sign Up</AuthButton>
-      </form>
+      <Signup />
     </AuthLayout>
   );
 }
 
-export default Signup;
+export default Index;

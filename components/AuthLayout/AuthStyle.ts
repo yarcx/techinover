@@ -7,16 +7,16 @@ interface AuthWrapperProps {
 }
 
 const AuthWrapper = styled.main<AuthLayoutProps>`
-  height: 100vh;
-  width: 100vw;
-  color: black;
-  overflow: hidden;
   background: #ffffff;
+  color: black;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
 
   .authForm {
-    width: 100vw;
     height: 100vh;
-    padding: 1rem;
+    padding: ${(props) => (props.authPageHeight?.length ? "8rem 1rem 3rem 1rem" : "4rem 1rem")};
+    width: 100vw;
   }
 
   @media ${devices.laptop} {
@@ -25,7 +25,7 @@ const AuthWrapper = styled.main<AuthLayoutProps>`
     place-items: center;
     .authForm {
       height: ${(props) => (props.authPageHeight ? props.authPageHeight : "90vh")};
-      width: 70vh;
+      width: 80vh;
       max-width: 600px;
       padding: 0.5rem 1rem;
     }

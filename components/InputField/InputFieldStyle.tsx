@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface InputFieldWrapperProps {
   icon?: boolean;
+  border?: boolean;
 }
 
 const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
@@ -29,20 +30,22 @@ const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
   .inputField {
     width: 100%;
     height: 52px;
-    background: #f3f4f5;
+    background: ${(props) => (props.border ? "#ffffff" : "#f3f4f5")};
     border: 1px solid #eaeced;
     border-radius: 7px;
-    padding-inline: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     align-self: center;
-    & > input {
+    padding-right: 1rem;
+    & > input,
+    > select {
       background: transparent;
+      padding-inline: 1rem;
       height: 100%;
       border: 0;
       outline: none;
-      width: ${(props) => (props.icon ? "90%" : "100%")};
+      width: ${(props) => (props.icon ? "95%" : "100%")};
       color: #5a5858;
       font-size: 1rem;
 
