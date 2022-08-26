@@ -1,19 +1,20 @@
 import styled from "styled-components";
+import { ISignUpInterface } from "../lib/interface";
 
 interface InputFieldWrapperProps {
   icon?: boolean;
   border?: boolean;
+  errors?: ISignUpInterface;
 }
 
 const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
-  /* height: 72px; */
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 1rem;
+  row-gap: 0.6rem;
   align-items: start;
-  margin: 1rem auto 2rem auto;
+  margin: 0.6rem auto 1rem auto;
 
   & > label {
     font-family: "Inter";
@@ -21,9 +22,6 @@ const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    /* identical to box height */
-
-    /* Gray / 500 */
 
     color: #667085;
   }
@@ -31,7 +29,7 @@ const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
     width: 100%;
     height: 52px;
     background: ${(props) => (props.border ? "#ffffff" : "#f3f4f5")};
-    border: 1px solid #eaeced;
+    border: ${(props) => (props.errors ? "1px solid red" : "1px solid #eaeced")};
     border-radius: 7px;
     display: flex;
     justify-content: space-between;
@@ -53,6 +51,10 @@ const InputFieldWrapper = styled.div<InputFieldWrapperProps>`
         font-size: 13px;
       }
     }
+  }
+  .error {
+    color: red;
+    font-size: 0.8rem;
   }
 `;
 export { InputFieldWrapper };

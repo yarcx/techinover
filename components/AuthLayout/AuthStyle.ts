@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { devices } from "../../lib/screenSizes";
+import { devices } from "../lib/screenSizes";
 import { AuthLayoutProps } from "./AuthLayout";
 
 interface AuthWrapperProps {
@@ -24,7 +24,7 @@ const AuthWrapper = styled.main<AuthLayoutProps>`
     align-items: center;
     place-items: center;
     .authForm {
-      height: ${(props) => (props.authPageHeight ? props.authPageHeight : "90vh")};
+      height: ${(props) => (props.authPageHeight ? props.authPageHeight : "fit-content")};
       width: 80vh;
       max-width: 600px;
       padding: 0.5rem 1rem;
@@ -75,6 +75,7 @@ const AuthButton = styled.button`
   transition: opacity 0.3s ease-in-out;
   max-width: 500px;
   margin-inline: auto;
+  margin-top: 2rem;
 
   &:hover {
     opacity: 0.8;

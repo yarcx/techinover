@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconProps } from "../../lib/interface";
+import { IconProps } from "../lib/interface";
 
 export const CloseEyeIcon = ({
   size = 18,
@@ -8,10 +8,10 @@ export const CloseEyeIcon = ({
 }: IconProps): JSX.Element => {
   return (
     <svg
+      style={{ cursor: "pointer" }}
       width={size}
       height={size}
       onClick={onClick}
-      className="cursor-pointer"
       viewBox="0 0 22 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

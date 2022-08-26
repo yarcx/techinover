@@ -1,29 +1,34 @@
 import React from "react";
-import { CloseEyeIcon } from "../Icon";
+
+import { ISelectField, IUserType } from "../lib/interface";
 import { InputFieldWrapper } from "./InputFieldStyle";
 
 function SelectField({
-  name = "email",
-  type = "text",
-  placeholder = "Enter your email address",
-  label = "Email address",
-  icon = false,
-  ic = <CloseEyeIcon />,
-  border = false,
-}) {
+  name = "userType",
+  placeholder,
+  label,
+  icon,
+  border,
+  options,
+  errors,
+  register,
+}: ISelectField) {
   return (
-    <InputFieldWrapper icon={icon} border={border}>
+    <InputFieldWrapper icon={icon} border={border} errors={errors[name]}>
       <label htmlFor={name}>{label}</label>
       <div className="inputField">
-        <select name={name} placeholder={placeholder}>
-          <option value="teacher" disabled>
-            Choose your role let me see
+        <select {...register(name)} name={name} placeholder={placeholder}>
+          <option defaultValue="" value="">
+            Select role
           </option>
-          <option value="teacher">Teacher</option>
-          <option value="Students">Students</option>
+          {options.map(({ text, value }: IUserType) => (
+            <option key={text} value={value}>
+              {text}
+            </option>
+          ))}
         </select>
-        {icon ? ic || <CloseEyeIcon /> : null}
       </div>
+      {errors[name] && <span className="error">{errors[name]?.message}</span>}
     </InputFieldWrapper>
   );
 }
