@@ -1,6 +1,10 @@
 import { MouseEventHandler } from "react";
 import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 
+export interface IAuthButton {
+  loading?: boolean;
+}
+
 export type IconProps = {
   size?: number;
   color?: string;
@@ -27,6 +31,13 @@ export interface ISignUpInterface extends ILoginFormInputs {
     email: string;
     password: number;
   }>;
+}
+
+export interface IUserDetailsRes {
+  _id: string;
+  email: string;
+  fullName: string;
+  userType: string;
 }
 
 export interface IInputField {

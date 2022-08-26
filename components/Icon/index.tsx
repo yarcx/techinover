@@ -1,3 +1,5 @@
 import { CloseEyeIcon } from "./CloseEyeIcon";
+import { WarningIcon } from "./WarningIcon";
+import { RoundedCheckIcon } from "./RoundedCheckIcon";
 
-export { CloseEyeIcon };
+export { CloseEyeIcon, WarningIcon, RoundedCheckIcon };

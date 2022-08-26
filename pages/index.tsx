@@ -4,8 +4,11 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Wrapper from "../components/Wrapper";
 import AuthLayout from "../components/AuthLayout/AuthLayout";
+import { AuthButton } from "../components/AuthLayout/AuthStyle";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
+  const { push } = useRouter();
   return (
     <>
       <Head>
@@ -14,7 +17,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AuthLayout>hello</AuthLayout>
+      <AuthLayout>
+        <section>
+          <h1>Hey there, Login to enter your dashboard or signup to create an account</h1>
+          <AuthButton onClick={() => push("/login")}>Login</AuthButton>
+          <AuthButton onClick={() => push("/signup")}>Sign Up</AuthButton>
+        </section>
+      </AuthLayout>
     </>
   );
 };

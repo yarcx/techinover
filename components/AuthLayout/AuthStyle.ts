@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IAuthButton } from "../lib/interface";
 import { devices } from "../lib/screenSizes";
 import { AuthLayoutProps } from "./AuthLayout";
 
@@ -50,14 +51,15 @@ const AuthTitle = styled.h1`
   }
 `;
 
-const AuthButton = styled.button`
+const AuthButton = styled.button<IAuthButton>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 18px 20px;
   /* purple */
-  background: #7d5fff;
+  background: ${(props) => (props.loading ? "rebeccapurple" : "#7d5fff")};
+  /* background: purple; */
   border-radius: 6px;
   width: 100%;
   outline: none;
@@ -76,13 +78,29 @@ const AuthButton = styled.button`
   max-width: 500px;
   margin-inline: auto;
   margin-top: 2rem;
+  opacity: ${(props) => (props.loading ? "0.8" : "1")};
 
   &:hover {
     opacity: 0.8;
   }
+`;
 
-  @media ${devices.laptop} {
+const AuthLoader = styled.span`
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;
 
-export { AuthWrapper, AuthTitle, AuthButton };
+export { AuthWrapper, AuthTitle, AuthButton, AuthLoader };

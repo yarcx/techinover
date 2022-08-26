@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 
 import usePasswordType from "../Hooks/usePasswordType";
 import { AuthButton, AuthTitle } from "../AuthLayout/AuthStyle";
@@ -10,9 +11,14 @@ import SelectField from "../InputField/SelectField";
 import { USER_TYPE } from "../lib/data";
 import { ISignUpInterface } from "../lib/interface";
 import { signUpSchema } from "../lib/validationSchemas";
+import { useSnackbar } from "../Hooks/useSnackbar";
+import { SignUserUp } from "../Services/api";
 
 function Signup() {
+  const [creatingANewUser, setCreatingANewUser] = useState(false);
   const { passwordType, changePassword } = usePasswordType();
+  const { showSuccessSnackbar, showErrorSnackbar } = useSnackbar();
+  const { push } = useRouter();
   const {
     handleSubmit,
     register,
@@ -21,8 +27,27 @@ function Signup() {
     resolver: yupResolver(signUpSchema),
   });
 
-  const handleSignUp: SubmitHandler<ISignUpInterface> = async (data) => {
-    console.log(data, "trying to sign up");
+  const handleSignUp: SubmitHandler<ISignUpInterface> = async (data: ISignUpInterface) => {
+    if (creatingANewUser) {
+      return;
+    }
+    setCreatingANewUser(true);
+    try {
+      const res = await SignUserUp(data);
+      setCreatingANewUser(false);
+      if (res.status === 201) {
+        showSuccessSnackbar("Sign up was successful");
+        // redirect the user to login page once the snackbar comes up
+        return push("/login");
+      }
+    } catch (error: any) {
+      setCreatingANewUser(false);
+      if (error.name === "AxiosError") {
+        return showErrorSnackbar(error.response.data.message);
+      }
+      console.log(error, "there was an error while trying to log you in");
+      return showErrorSnackbar("sign up failed, Something went wrong");
+    }
   };
   return (
     <form className="authForm" onSubmit={handleSubmit(handleSignUp)}>
@@ -67,7 +92,9 @@ function Signup() {
         errors={errors}
         register={register}
       />
-      <AuthButton>Sign Up</AuthButton>
+      <AuthButton loading={creatingANewUser}>
+        {creatingANewUser ? "Loading..." : "Sign Up"}
+      </AuthButton>
     </form>
   );
 }
