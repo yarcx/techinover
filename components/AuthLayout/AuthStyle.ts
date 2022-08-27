@@ -33,7 +33,7 @@ const AuthWrapper = styled.main<AuthLayoutProps>`
   }
 
   .landingPage {
-    margin-top: 50%;
+    margin-top: 30%;
 
     & > h1 {
       text-align: center;

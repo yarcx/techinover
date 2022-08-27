@@ -36,7 +36,7 @@ function Index() {
       if (res.data as IUserDetailsRes) {
         seTryingToLogIn(false);
         localStorage.setItem("fullName", res.data.fullName);
-        document.cookie = `id=${res.data._id}`;
+        document.cookie = `userId=${res.data._id}`;
         push("/dashboard");
       }
       showSuccessSnackbar("Youve logged in succesfully", {
