@@ -31,6 +31,23 @@ const AuthWrapper = styled.main<AuthLayoutProps>`
       padding: 0.5rem 1rem;
     }
   }
+
+  .landingPage {
+    margin-top: 50%;
+
+    & > h1 {
+      text-align: center;
+    }
+    .landingPage__button {
+      display: flex;
+      column-gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    @media ${devices.laptop} {
+      margin-top: 2rem;
+    }
+  }
 `;
 
 const AuthTitle = styled.h1`
@@ -61,7 +78,7 @@ const AuthButton = styled.button<IAuthButton>`
   background: ${(props) => (props.loading ? "rebeccapurple" : "#7d5fff")};
   /* background: purple; */
   border-radius: 6px;
-  width: 100%;
+  width: ${(props) => props.size || "100%"};
   outline: none;
   border: 0;
   cursor: pointer;

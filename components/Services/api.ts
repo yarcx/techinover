@@ -3,7 +3,7 @@ import { ISignUpInterface, ILoginFormInputs } from "../lib/interface";
 
 const TechinOverClient = axios.create({
   baseURL: "https://auth-test-api-techinnover.herokuapp.com/api/v1",
-  timeout: 5000,
+  timeout: 10000,
   headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
 });
 

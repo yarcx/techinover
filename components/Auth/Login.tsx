@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import usePasswordType from "../Hooks/usePasswordType";
 import { AuthButton, AuthTitle } from "../AuthLayout/AuthStyle";
-import { CloseEyeIcon } from "../Icon";
+import { CloseEyeIcon, RoundedCheckIcon, WarningIcon } from "../Icon";
 import InputField from "../InputField/InputField";
 import { ILoginFormInputs, IUserDetailsRes } from "../lib/interface";
 import { loginSchema } from "../lib/validationSchemas";
@@ -39,11 +39,19 @@ function Index() {
         document.cookie = `id=${res.data._id}`;
         push("/dashboard");
       }
-      showSuccessSnackbar("Youve logged in succesfully");
+      showSuccessSnackbar("Youve logged in succesfully", {
+        position: "top-center",
+        style: { color: "#FFFFFF", backgroundColor: "#1B9B65" },
+        icon: <RoundedCheckIcon color="#FFFFFF" />,
+      });
     } catch (error: any) {
       seTryingToLogIn(false);
       if (error?.name === "AxiosError") {
-        return showErrorSnackbar(error?.response?.data?.message || error?.message);
+        return showErrorSnackbar(error?.response?.data?.message || error?.message, {
+          position: "top-center",
+          style: { color: "white", backgroundColor: "red" },
+          icon: <WarningIcon color="#FFFFFF" />,
+        });
       }
       console.log(error.response, "error trying to login");
       showErrorSnackbar("Login Failed, Something went wrong");

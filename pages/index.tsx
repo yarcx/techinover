@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Wrapper from "../components/Wrapper";
 import AuthLayout from "../components/AuthLayout/AuthLayout";
 import { AuthButton } from "../components/AuthLayout/AuthStyle";
 import { useRouter } from "next/router";
@@ -18,10 +17,18 @@ const Home: NextPage = () => {
       </Head>
 
       <AuthLayout>
-        <section>
-          <h1>Hey there, Login to enter your dashboard or signup to create an account</h1>
-          <AuthButton onClick={() => push("/login")}>Login</AuthButton>
-          <AuthButton onClick={() => push("/signup")}>Sign Up</AuthButton>
+        <section className="landingPage">
+          <h1>
+            Hey there, <br /> Click Login if you already have an account or Signup to create one
+          </h1>
+          <div className="landingPage__button">
+            <AuthButton size="7rem" onClick={() => push("/login")}>
+              Login
+            </AuthButton>
+            <AuthButton size="7rem" onClick={() => push("/signup")}>
+              Sign Up
+            </AuthButton>
+          </div>
         </section>
       </AuthLayout>
     </>

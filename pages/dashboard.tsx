@@ -11,7 +11,9 @@ const Dashboard: NextPage = () => {
   }, []);
   return (
     <AuthLayout>
-      <h1>Welcome {fullName ? fullName : ""}</h1>
+      <div className="landingPage">
+        <h1>Welcome {fullName && fullName}</h1>
+      </div>
     </AuthLayout>
   );
 };

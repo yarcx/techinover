@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 import usePasswordType from "../Hooks/usePasswordType";
 import { AuthButton, AuthTitle } from "../AuthLayout/AuthStyle";
-import { CloseEyeIcon } from "../Icon";
+import { CloseEyeIcon, RoundedCheckIcon, WarningIcon } from "../Icon";
 import InputField from "../InputField/InputField";
 import SelectField from "../InputField/SelectField";
 import { USER_TYPE } from "../lib/data";
@@ -36,14 +36,22 @@ function Signup() {
       const res = await SignUserUp(data);
       setCreatingANewUser(false);
       if (res.status === 201) {
-        showSuccessSnackbar("Sign up was successful");
+        showSuccessSnackbar("Sign up was successful", {
+          position: "top-center",
+          style: { color: "#FFFFFF", backgroundColor: "#1B9B65" },
+          icon: <RoundedCheckIcon color="#FFFFFF" />,
+        });
         // redirect the user to login page once the snackbar comes up
         return push("/login");
       }
     } catch (error: any) {
       setCreatingANewUser(false);
       if (error.name === "AxiosError") {
-        return showErrorSnackbar(error.response.data.message);
+        return showErrorSnackbar(error?.response?.data?.message || error?.message, {
+          position: "top-center",
+          style: { color: "white", backgroundColor: "red" },
+          icon: <WarningIcon color="#FFFFFF" />,
+        });
       }
       console.log(error, "there was an error while trying to log you in");
       return showErrorSnackbar("sign up failed, Something went wrong");

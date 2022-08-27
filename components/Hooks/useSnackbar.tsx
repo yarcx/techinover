@@ -6,7 +6,7 @@ type ToastOption = { position: ToastPosition; style: CSSProperties; icon: Render
 
 export const useSnackbar = () => {
   const showSuccessSnackbar = (message: string, options?: ToastOption) => {
-    toast.error(message, {
+    toast.success(message, {
       position: options?.position || "bottom-center",
       style: { color: "#FFFFFF", backgroundColor: "#1B9B65" },
       icon: <RoundedCheckIcon color="#FFFFFF" />,

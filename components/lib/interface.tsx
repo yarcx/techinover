@@ -3,6 +3,8 @@ import { FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 
 export interface IAuthButton {
   loading?: boolean;
+  size?: string;
+  bgColor?: string;
 }
 
 export type IconProps = {
